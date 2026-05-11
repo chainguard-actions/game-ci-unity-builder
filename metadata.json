@@ -1,0 +1,7 @@
+{
+  "owner": "game-ci",
+  "name": "unity-builder",
+  "visibility": "internal",
+  "description": "Build Unity projects for different platforms.",
+  "block_publish": false
+}
