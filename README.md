@@ -8,11 +8,11 @@ Hardened by [Chainguard](https://www.chainguard.dev) from the upstream action at
 
 | Version | Tag | Upstream commit |
 |---------|-----|-----------------|
-| v4.6.2 | [`v4.6.2`](https://github.com/chainguard-actions/unity-builder/tree/v4.6.2) | — |
-| v4.6.3 | [`v4.6.3`](https://github.com/chainguard-actions/unity-builder/tree/v4.6.3) | — |
-| v4.7.0 | [`v4.7.0`](https://github.com/chainguard-actions/unity-builder/tree/v4.7.0) | — |
-| v4.8.0 | [`v4.8.0`](https://github.com/chainguard-actions/unity-builder/tree/v4.8.0) | — |
-| v4.8.1 | [`v4.8.1`](https://github.com/chainguard-actions/unity-builder/tree/v4.8.1) | — |
+| v4.6.2 | [`v4.6.2`](https://github.com/chainguard-actions/game-ci--unity-builder/tree/v4.6.2) | — |
+| v4.6.3 | [`v4.6.3`](https://github.com/chainguard-actions/game-ci--unity-builder/tree/v4.6.3) | — |
+| v4.7.0 | [`v4.7.0`](https://github.com/chainguard-actions/game-ci--unity-builder/tree/v4.7.0) | — |
+| v4.8.0 | [`v4.8.0`](https://github.com/chainguard-actions/game-ci--unity-builder/tree/v4.8.0) | — |
+| v4.8.1 | [`v4.8.1`](https://github.com/chainguard-actions/game-ci--unity-builder/tree/v4.8.1) | — |
 
 ## Privacy
 
