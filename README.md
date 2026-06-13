@@ -13,6 +13,7 @@ Hardened by [Chainguard](https://www.chainguard.dev) from the upstream action at
 | v4.7.0 | [`v4.7.0`](https://github.com/chainguard-actions/game-ci-unity-builder/tree/v4.7.0) | — |
 | v4.8.0 | [`v4.8.0`](https://github.com/chainguard-actions/game-ci-unity-builder/tree/v4.8.0) | — |
 | v4.8.1 | [`v4.8.1`](https://github.com/chainguard-actions/game-ci-unity-builder/tree/v4.8.1) | [`1d4ee06`](https://github.com/game-ci/unity-builder/commit/1d4ee0697f193f54668e98961d79907911f4b4f2) |
+| v5.0.0 | [`v5.0.0`](https://github.com/chainguard-actions/game-ci-unity-builder/tree/v5.0.0) | [`d829bfc`](https://github.com/game-ci/unity-builder/commit/d829bfc901f2347c8fe18898f06712b66916ef42) |
 
 ## Privacy
 
