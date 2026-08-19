@@ -8,7 +8,7 @@ Hardened by [Chainguard](https://www.chainguard.dev) from the upstream action at
 
 | Version | Tag | Upstream commit |
 |---------|-----|-----------------|
-| v4.6.2 | [`v4.6.2`](https://github.com/chainguard-actions/game-ci-unity-builder/tree/v4.6.2) | — |
+| v4.6.2 | [`v4.6.2`](https://github.com/chainguard-actions/game-ci-unity-builder/tree/v4.6.2) | [`8ec161b`](https://github.com/game-ci/unity-builder/commit/8ec161b981a3cd2b1f5d6672e8cd1a09857490b8) |
 | v4.6.3 | [`v4.6.3`](https://github.com/chainguard-actions/game-ci-unity-builder/tree/v4.6.3) | — |
 | v4.7.0 | [`v4.7.0`](https://github.com/chainguard-actions/game-ci-unity-builder/tree/v4.7.0) | [`d587557`](https://github.com/game-ci/unity-builder/commit/d58755728721f9161882dc79ea5818bb2f3ad64e) |
 | v4.8.0 | [`v4.8.0`](https://github.com/chainguard-actions/game-ci-unity-builder/tree/v4.8.0) | — |
