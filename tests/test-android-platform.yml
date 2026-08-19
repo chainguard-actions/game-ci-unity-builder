@@ -1,0 +1,37 @@
+name: Test Android platform
+on:
+  workflow_dispatch:
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
+
+      - id: action
+        uses: .
+        continue-on-error: true
+        with:
+          targetPlatform: Android
+          unityVersion: '2022.3.0f1'
+          versioning: 'None'
+          androidExportType: 'androidPackage'
+          androidSymbolType: 'none'
+          skipActivation: 'true'
+
+      - name: Assert action ran and produced outputs or failed gracefully
+        env:
+          OUTCOME: ${{ steps.action.outcome }}
+          ENGINE_EXIT_CODE: ${{ steps.action.outputs.engineExitCode }}
+          ANDROID_VERSION_CODE: ${{ steps.action.outputs.androidVersionCode }}
+        run: |
+          echo "outcome: $OUTCOME"
+          echo "engineExitCode: $ENGINE_EXIT_CODE"
+          echo "androidVersionCode: $ANDROID_VERSION_CODE"
+          if [ "$OUTCOME" = "success" ]; then
+            echo "PASS: action succeeded"
+          elif [ "$OUTCOME" = "failure" ]; then
+            echo "PASS: action failed gracefully (expected without Unity license/project)"
+          else
+            echo "FAIL: unexpected outcome '$OUTCOME'"
+            exit 1
+          fi

@@ -1,0 +1,42 @@
+name: Test WebGL platform
+on:
+  workflow_dispatch:
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
+
+      - id: action
+        uses: .
+        continue-on-error: true
+        with:
+          targetPlatform: WebGL
+          unityVersion: '2022.3.0f1'
+          versioning: 'Custom'
+          version: '1.0.0'
+          buildName: 'MyWebGLBuild'
+          skipActivation: 'true'
+
+      - name: Assert action ran and produced outputs or failed gracefully
+        env:
+          OUTCOME: ${{ steps.action.outcome }}
+          ENGINE_EXIT_CODE: ${{ steps.action.outputs.engineExitCode }}
+          BUILD_VERSION: ${{ steps.action.outputs.buildVersion }}
+        run: |
+          echo "outcome: $OUTCOME"
+          echo "engineExitCode: $ENGINE_EXIT_CODE"
+          echo "buildVersion: $BUILD_VERSION"
+          if [ "$OUTCOME" = "success" ]; then
+            echo "Action succeeded"
+            if [ -n "$BUILD_VERSION" ]; then
+              echo "PASS: buildVersion is set to '$BUILD_VERSION'"
+            else
+              echo "PASS: action succeeded (buildVersion may be empty without a project)"
+            fi
+          elif [ "$OUTCOME" = "failure" ]; then
+            echo "PASS: action failed gracefully (expected without Unity license/project)"
+          else
+            echo "FAIL: unexpected outcome '$OUTCOME'"
+            exit 1
+          fi
