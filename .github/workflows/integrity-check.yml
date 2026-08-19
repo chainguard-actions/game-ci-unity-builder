@@ -1,0 +1,58 @@
+name: Integrity
+
+on:
+  push: { branches: [main] }
+  pull_request:
+    types: [opened, synchronize, reopened, labeled]
+
+permissions:
+  contents: read
+  checks: write
+  statuses: write
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  tests:
+    name: Tests
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
+      - name: Install package manager (from package.json)
+        run: |
+          corepack enable
+          corepack install
+      - uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020 # v4
+        with:
+          node-version: '18'
+      - name: Resolve yarn cache folder
+        id: yarn-config
+        run: echo "cacheFolder=$(yarn config get cacheFolder)" >> "$GITHUB_OUTPUT"
+      - name: Restore yarn install cache (node_modules + cacheFolder + install-state)
+        uses: actions/cache@0057852bfaa89a56745cba8c7296529d2fc39830 # v4
+        with:
+          path: |
+            ${{ steps.yarn-config.outputs.cacheFolder }}
+            .yarn/install-state.gz
+          key: yarn-v2-${{ runner.os }}-node-18-${{ hashFiles('yarn.lock') }}
+          restore-keys: |
+            yarn-v2-${{ runner.os }}-node-18-
+      - name: Install deps
+        env:
+          YARN_ENABLE_HARDENED_MODE: 'false'
+        run: |
+          case "$(yarn --version)" in 1.*) echo 'expected up-to-date yarn version'; exit 1 ;; esac
+          yarn install --immutable
+      - run: yarn lint
+      - run: yarn test:ci --coverage
+      - name: Upload coverage to Codecov
+        env:
+          CODECOV_TOKEN: ${{ secrets.CODECOV_TOKEN }}
+        run: |
+          CODECOV_SCRIPT="$(mktemp)"
+          curl -s --fail https://codecov.io/bash -o "$CODECOV_SCRIPT"
+          bash "$CODECOV_SCRIPT"
+      - run: yarn build || { echo "build command should always succeed" ; exit 61; }
+  #      - run: yarn build --quiet && git diff --quiet dist || { echo "dist should be auto generated" ; git diff dist ; exit 62; }

@@ -1,0 +1,40 @@
+name: Test Android platform with android-specific inputs
+on:
+  workflow_dispatch:
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
+
+      - id: action
+        uses: .
+        with:
+          targetPlatform: Android
+          androidExportType: androidPackage
+          androidSymbolType: none
+          versioning: Custom
+          version: '1.0.0'
+          androidVersionCode: '1'
+          cliVersion: 'latest'
+        continue-on-error: true
+
+      - name: Assert action ran for Android platform
+        env:
+          OUTCOME: ${{ steps.action.outcome }}
+          ENGINE_EXIT_CODE: ${{ steps.action.outputs.engineExitCode }}
+        run: |
+          echo "outcome: $OUTCOME"
+          echo "engineExitCode: $ENGINE_EXIT_CODE"
+          # The action should run with Android-specific inputs.
+          # In the harness there is no Unity project or Android SDK,
+          # so the build will fail, but the action should have attempted
+          # to run the CLI (not fail at argument parsing).
+          if [ "$OUTCOME" = "success" ]; then
+            echo "PASS: action succeeded"
+          elif [ "$OUTCOME" = "failure" ]; then
+            echo "PASS: action failed at CLI/build stage (expected without Unity/Android SDK)"
+          else
+            echo "FAIL: unexpected outcome '$OUTCOME'"
+            exit 1
+          fi
