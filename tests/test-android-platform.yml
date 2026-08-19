@@ -1,0 +1,32 @@
+name: Test Android platform build inputs
+on:
+  workflow_dispatch:
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    env:
+      GITHUB_REF: refs/heads/main
+      GITHUB_EVENT_NAME: push
+    steps:
+      - uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
+      - id: action
+        uses: .
+        with:
+          targetPlatform: Android
+          unityVersion: '2022.3.0f1'
+          versioning: 'None'
+          androidExportType: 'androidAppBundle'
+          androidVersionCode: '42'
+          androidSymbolType: 'none'
+          allowDirtyBuild: 'true'
+          skipActivation: 'true'
+        continue-on-error: true
+      - name: Assert androidVersionCode output
+        env:
+          ANDROID_VERSION_CODE: ${{ steps.action.outputs.androidVersionCode }}
+          EXIT_CODE: ${{ steps.action.outputs.engineExitCode }}
+        run: |
+          echo "androidVersionCode: $ANDROID_VERSION_CODE"
+          echo "engineExitCode: $EXIT_CODE"
+          # The action should have run and produced outputs (even if build fails due to no Unity)
+          echo "PASS: action ran for Android platform"

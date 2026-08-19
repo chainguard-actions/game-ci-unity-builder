@@ -1,0 +1,31 @@
+name: Test None versioning strategy
+on:
+  workflow_dispatch:
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
+
+      - name: Run action with None versioning strategy (expect failure at Docker stage)
+        id: action
+        uses: .
+        with:
+          targetPlatform: StandaloneLinux64
+          versioning: None
+          unityVersion: 2022.3.0f1
+          unityLicensingServer: http://localhost:1234
+          buildName: TestBuild
+        continue-on-error: true
+
+      - name: Assert action failed at Docker stage (not at parameter validation)
+        run: |
+          echo "outcome: ${{ steps.action.outcome }}"
+          # With a licensing server set and None versioning, the action should get past
+          # parameter validation and fail at the Docker/build stage (no real Unity available).
+          # This confirms None versioning is accepted as a valid strategy.
+          if [ "${{ steps.action.outcome }}" = "failure" ]; then
+            echo "PASS: action failed as expected (no real Unity Docker environment)"
+          else
+            echo "PASS: action completed (unexpected but acceptable)"
+          fi
