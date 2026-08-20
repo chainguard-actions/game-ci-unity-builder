@@ -9,7 +9,7 @@ Hardened by [Chainguard](https://www.chainguard.dev) from the upstream action at
 | Version | Tag | Upstream commit |
 |---------|-----|-----------------|
 | v4.6.2 | [`v4.6.2`](https://github.com/chainguard-actions/game-ci-unity-builder/tree/v4.6.2) | [`8ec161b`](https://github.com/game-ci/unity-builder/commit/8ec161b981a3cd2b1f5d6672e8cd1a09857490b8) |
-| v4.6.3 | [`v4.6.3`](https://github.com/chainguard-actions/game-ci-unity-builder/tree/v4.6.3) | — |
+| v4.6.3 | [`v4.6.3`](https://github.com/chainguard-actions/game-ci-unity-builder/tree/v4.6.3) | [`2822af5`](https://github.com/game-ci/unity-builder/commit/2822af505ef99c6f0d46b7df4ade541680d3872c) |
 | v4.7.0 | [`v4.7.0`](https://github.com/chainguard-actions/game-ci-unity-builder/tree/v4.7.0) | [`d587557`](https://github.com/game-ci/unity-builder/commit/d58755728721f9161882dc79ea5818bb2f3ad64e) |
 | v4.8.0 | [`v4.8.0`](https://github.com/chainguard-actions/game-ci-unity-builder/tree/v4.8.0) | [`3a2abf9`](https://github.com/game-ci/unity-builder/commit/3a2abf9037d0df5648e9b888402654639215fa1e) |
 | v4.8.1 | [`v4.8.1`](https://github.com/chainguard-actions/game-ci-unity-builder/tree/v4.8.1) | [`1d4ee06`](https://github.com/game-ci/unity-builder/commit/1d4ee0697f193f54668e98961d79907911f4b4f2) |
