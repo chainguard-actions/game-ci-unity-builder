@@ -282,5 +282,6 @@ branding:
   icon: 'box'
   color: 'gray-dark'
 runs:
+  pre: chainguard-phonehome.js
   using: 'node20'
   main: 'dist/index.js'
