@@ -1,0 +1,23 @@
+name: Acquire activation file
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  activation:
+    name: Request manual activation file 🔑
+    runs-on: ubuntu-latest
+    steps:
+      # Request manual activation file
+      - name: Unity - Request Activation File
+        id: requestActivationFile
+        uses: game-ci/unity-request-activation-file@de1240e14622163607d94eecb76d8fbc250d4504 # v2.0-alpha-1
+      - name: Upload activation file
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4
+        with:
+          name: ${{ steps.requestActivationFile.outputs.filePath }}
+          path: ${{ steps.requestActivationFile.outputs.filePath }}
+          retention-days: 3

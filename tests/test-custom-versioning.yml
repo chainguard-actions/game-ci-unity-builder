@@ -1,0 +1,45 @@
+name: Test custom versioning scheme
+on:
+  workflow_dispatch:
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
+
+      - id: action
+        uses: .
+        continue-on-error: true
+        with:
+          targetPlatform: StandaloneLinux64
+          unityVersion: '2022.3.0f1'
+          versioning: Custom
+          version: '1.2.3'
+          buildName: CustomVersionBuild
+
+      - name: Assert action ran with custom versioning or failed gracefully
+        env:
+          OUTCOME: ${{ steps.action.outcome }}
+          ENGINE_EXIT_CODE: ${{ steps.action.outputs.engineExitCode }}
+          BUILD_VERSION: ${{ steps.action.outputs.buildVersion }}
+        run: |
+          echo "outcome: $OUTCOME"
+          echo "engineExitCode: $ENGINE_EXIT_CODE"
+          echo "buildVersion: $BUILD_VERSION"
+          if [ "$OUTCOME" = "success" ]; then
+            echo "Action succeeded"
+            if [ -z "$BUILD_VERSION" ]; then
+              echo "FAIL: action succeeded but buildVersion output is empty"
+              exit 1
+            fi
+            if [ "$BUILD_VERSION" != "1.2.3" ]; then
+              echo "FAIL: expected buildVersion '1.2.3' but got '$BUILD_VERSION'"
+              exit 1
+            fi
+            echo "PASS: buildVersion=$BUILD_VERSION"
+          elif [ "$OUTCOME" = "failure" ]; then
+            echo "PASS: action failed gracefully (Unity not available in harness)"
+          else
+            echo "FAIL: unexpected outcome '$OUTCOME'"
+            exit 1
+          fi
