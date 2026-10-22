@@ -1,0 +1,22 @@
+{
+  "configurations": [
+    {
+      "name": "PowerShell Launch Current File",
+      "type": "PowerShell",
+      "request": "launch",
+      "script": "${file}",
+      "cwd": "${cwd}"
+    },
+    {
+      "type": "node",
+      "request": "launch",
+      "name": "Debug Vitest Test",
+      "program": "${workspaceRoot}/node_modules/vitest/vitest.mjs",
+      "args": ["run", "${relativeFile}"],
+      "outputCapture": "std",
+      "internalConsoleOptions": "openOnSessionStart",
+      "envFile": "${workspaceRoot}/.env",
+      "skipFiles": ["${workspaceRoot}/../../node_modules/**/*", "<node_internals>/**/*"]
+    }
+  ]
+}
