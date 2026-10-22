@@ -15,6 +15,7 @@ Hardened by [Chainguard](https://www.chainguard.dev) from the upstream action at
 | v4.8.1 | [`v4.8.1`](https://github.com/chainguard-actions/game-ci-unity-builder/tree/v4.8.1) | [`1d4ee06`](https://github.com/game-ci/unity-builder/commit/1d4ee0697f193f54668e98961d79907911f4b4f2) |
 | v5.0.0 | [`v5.0.0`](https://github.com/chainguard-actions/game-ci-unity-builder/tree/v5.0.0) | [`d829bfc`](https://github.com/game-ci/unity-builder/commit/d829bfc901f2347c8fe18898f06712b66916ef42) |
 | v5.0.1 | [`v5.0.1`](https://github.com/chainguard-actions/game-ci-unity-builder/tree/v5.0.1) | [`adaf7cd`](https://github.com/game-ci/unity-builder/commit/adaf7cd8f42fd48fbbf2d4f5f67ca30d87f819f1) |
+| v6.0.0 | [`v6.0.0`](https://github.com/chainguard-actions/game-ci-unity-builder/tree/v6.0.0) | [`eb1b9fb`](https://github.com/game-ci/unity-builder/commit/eb1b9fba120c6e62c9fb7a7a81d6c107ce004c45) |
 | v6.0.0-beta.1 | [`v6.0.0-beta.1`](https://github.com/chainguard-actions/game-ci-unity-builder/tree/v6.0.0-beta.1) | [`0ebc913`](https://github.com/game-ci/unity-builder/commit/0ebc9136f1bdffb79a274ad8b17e2a07805b2f2c) |
 
 ## Privacy
